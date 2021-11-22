@@ -15,6 +15,49 @@ class EbayCart extends Cart {
 
 }
 
+enum ComputerName {
+  macBook, // 0
+  macBookAir, // 1
+  macBookPro // 2
+}
+
+class StockItem {
+  int articleNo;
+  int amount;
+
+  StockItem(this.articleNo, this.amount);
+}
+
+class ComputerCart extends Cart {
+  final Map<ComputerName, StockItem> _stock = {
+    ComputerName.macBook: StockItem(4711, 12),
+    ComputerName.macBookAir: StockItem(4712, 8),
+    ComputerName.macBookPro: StockItem(4713, 6),
+  };
+
+  ComputerCart(String name) : super(name);
+
+  @override
+  int addItemAmout(int articleNo, [int amount = 1]) {
+    ComputerName? computerName;
+
+    _stock.forEach((key, value) {
+      if (value.articleNo == articleNo) computerName = key;
+    });
+
+    if (_stock[computerName]!.amount >= amount) {
+      _stock[computerName]!.amount -= amount;
+      return super.addItemAmout(articleNo, amount);
+    }
+
+    return 0;
+  }
+
+  int addComputer(ComputerName computerName, [int amount = 1]) {
+    return addItemAmout(_stock[computerName]!.articleNo, amount);
+  }
+}
+
 class Cart {
   final Map<int, int> _items = {}; //
   String _name;
