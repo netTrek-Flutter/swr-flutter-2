@@ -44,6 +44,7 @@ void main(List<String> arguments) {
   // cart.name = 'Saban'; // RO
   print(cart.name);
 
+  print(Cart.build(ChannelTypes.ebay));
   /*
   cart
         ..addItemAmout(11) // 1
