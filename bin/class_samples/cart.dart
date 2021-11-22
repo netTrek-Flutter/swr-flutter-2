@@ -2,9 +2,18 @@ import 'dart:math';
 
 class Cart {
   final Map<int, int> _items = {}; //
-  final String name;
+  String _name;
 
-  Cart(this.name);
+  Cart(this._name);
+  /*
+  set name(String value) {
+    _name = value;
+  }
+  */
+
+  String get name {
+    return 'CART -> $_name';
+  }
 
   int addItemAmout(int articleNo, [int amount = 1]) {
     return _chgAmount(articleNo, amount);
@@ -37,6 +46,6 @@ class Cart {
 
   @override
   String toString() {
-    return 'Cart $name items => $_items';
+    return '$name items => $_items';
   }
 }

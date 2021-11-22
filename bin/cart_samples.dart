@@ -30,7 +30,19 @@ import 'class_samples/my_class.dart';
 
 void main(List<String> arguments) {
   final Cart cart = Cart('amazon');
+  cart
+    ..addItemAmout(12, 12)
+    ..addItemAmout(12, 12)
+    ..addItemAmout(13, 13)
+    ..removeItemAmout(13)
+    ..removeItemAmout(13)
+    ..removeItemAmout(13)
+    ..removeItemAmout(13, 10)
+    ..removeItem(12);
   print(cart);
+
+  // cart.name = 'Saban'; // RO
+  print(cart.name);
 
   /*
   cart
