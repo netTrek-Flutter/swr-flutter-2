@@ -1,11 +1,14 @@
-// import 'package:flutter/material.dart';
-
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  runApp(CupertinoApp(
-    home: Center(
-      child: buildText(),
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: buildText('app title'),
+      ),
+      body: Center(
+        child: buildText(),
+      ),
     ),
   ));
 }
