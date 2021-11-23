@@ -1,22 +1,16 @@
-import 'package:flutter/widgets.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    Center(
-      child: Column(
-        children: [
-          buildText('hello world 1'),
-          buildText('hello world 2'),
-        ],
-      ),
+  runApp(MaterialApp(
+    home: Center(
+      child: buildText(),
     ),
-  );
+  ));
 }
 
-Text buildText(String text) {
+Text buildText([String text = 'hello world']) {
   return Text(
     text,
-    textDirection: TextDirection.ltr,
+    // textDirection: TextDirection.ltr,
   );
 }
