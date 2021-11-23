@@ -9,6 +9,44 @@ class PostService {
 
   PostService(this.url);
 
+  Future<PostModel> createPost(PostModel post) async {
+    String? errMsg;
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: post.toJsonString(true),
+        headers: {'Content-type': 'application/json; charset=UTF-8'},
+      );
+      if (response.statusCode == 201) {
+        return PostModel.fromJson(jsonDecode(response.body));
+      } else {
+        errMsg = 'Failed to create Post with body:= ${post.toJsonString(true)}';
+      }
+    } catch (err) {
+      errMsg =
+          'Failed to create Post with body:= ${post.toJsonString(true)} - because -> $err ';
+    }
+
+    throw Exception(errMsg);
+  }
+
+  Future<List<PostModel>> getPosts() async {
+    String? errMsg;
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return (jsonDecode(response.body) as List<dynamic>)
+            .map((post) => PostModel.fromJson(post))
+            .toList();
+      } else {
+        errMsg = 'Failed to load Posts';
+      }
+    } catch (err) {
+      errMsg = 'Failed to load Posts because -> $err ';
+    }
+    throw Exception(errMsg);
+  }
+
   Future<PostModel> getPostById(int id) async {
     String? errMsg;
     try {
