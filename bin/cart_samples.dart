@@ -29,6 +29,15 @@ import 'class_samples/my_class.dart';
  */
 
 void main(List<String> arguments) {
+  final Cart amazon = Cart.build(ChannelTypes.amazon);
+  print(amazon is AmazonCart);
+
+  final Cart amazonWithItems = Cart.withItems(
+    'amazon',
+    itmes: {4711: 12},
+  );
+  print(amazonWithItems);
+
   final Cart cart = Cart('amazon');
   cart
         ..addItemAmout(12, 12)

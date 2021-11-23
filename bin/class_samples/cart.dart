@@ -59,11 +59,16 @@ class ComputerCart extends Cart {
 }
 
 class Cart {
-  final Map<int, int> _items = {}; //
+  final Map<int, int> _items; //
   String _name;
 
-  Cart(this._name);
+  // leer Warenkorb auf Basis Channel Name mit
+  Cart(this._name) : _items = {};
 
+  // vordefinierter Warenkorb auf Basis Channel Name mit
+  Cart.withItems(this._name, {required Map<int, int> itmes}) : _items = itmes;
+
+  // factory erzeugt eine Erbende Instanz und gibt diese dann zurück
   factory Cart.build(ChannelTypes type) {
     switch (type) {
       case ChannelTypes.amazon:
