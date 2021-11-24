@@ -36,6 +36,16 @@ final ThemeData myTheme = ThemeData(
       color: Colors.green,
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: Colors.orange.shade700, // dunkler
+    foregroundColor:
+        Colors.white, // Farbe mit der auf den Hintergrund gezeichnet wird
+    splashColor: Colors.red.shade100, // Farbeffekt beim Tappen
+    extendedTextStyle: const TextStyle(
+      // farbe eines Labels - falls benutz
+      color: Colors.white,
+    ),
+  ),
 );
 
 class MyApp extends StatelessWidget {

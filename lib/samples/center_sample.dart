@@ -6,8 +6,22 @@ class CenterSample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+    // print(themeData.textTheme.bodyText1);
+    // print(themeData.textTheme.bodyText2);
     return Center(
-      child: buildText(),
+      child: Text(
+        'hello world 2',
+        style: themeData.textTheme.bodyText1,
+      ),
+      // child: Builder(
+      //     builder: (context) {
+      //       return Text(
+      //         'hello world 2',
+      //         style: themeData.textTheme.bodyText1,
+      //       );
+      //     }
+      // )
     );
   }
 }
