@@ -8,18 +8,39 @@ class ContainerSample extends StatelessWidget {
   Widget build(BuildContext context) {
     // return const SizedBox(
     //   width: 150,
+    //   height: 150,
     //   child: ColoredBox(
     //     color: Colors.green,
-    //     child: Text('hello'),
+    //     child: Padding(
+    //       padding: EdgeInsets.all(8.0),
+    //       child: Text(
+    //         'hello',
+    //         style: TextStyle(backgroundColor: Colors.red),
+    //       ),
+    //     ),
     //   ),
     // );
     return Container(
       width: 150,
       height: 150,
+
+      // constraints: const BoxConstraints(
+      //   maxWidth: 100,
+      //   minWidth: 50,
+      //   maxHeight: 150,
+      //   minHeight: 150,
+      // ),
+
       color: Colors.red,
+
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
+      // padding: const EdgeInsets.only(left: 15),
       // alignment: Alignment.center,
       // alignment: Alignment.bottomRight,
-      alignment: const Alignment(-0.4, 0.4),
+      // alignment: const Alignment(-0.4, 0.4),
+      // alignment: FractionalOffset.topLeft,
+      // alignment: FractionalOffset(0.0, 0.0),
       child: const Text(
         'hello world 2',
         style: TextStyle(backgroundColor: Colors.green),
