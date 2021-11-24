@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training/samples/button_sample.dart';
 import 'package:training/samples/center_sample.dart';
 import 'package:training/samples/column_sample.dart';
 import 'package:training/samples/container_sample.dart';
@@ -15,6 +16,7 @@ void main() {
     // body: GradientMagicSample(),
     // body: ColumnSample(),
     // body: TextSample(),
-    body: IconSample(),
+    // body: IconSample(),
+    body: ButtonSample(),
   ));
 }
