@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:training/common/factories.dart';
 
@@ -35,11 +37,19 @@ class ContainerSample extends StatelessWidget {
 
       decoration: BoxDecoration(
         // color: Colors.red,
-        gradient: const LinearGradient(
-          colors: [Colors.red, Colors.green],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+
+        // gradient: const LinearGradient(
+        //   colors: [Colors.red, Colors.green],
+        //   // begin: Alignment.topLeft,
+        //   // end: Alignment.bottomRight,
+        //   transform: GradientRotation(pi / 2),
+        // ),
+
+        image: const DecorationImage(
+          image: NetworkImage('https://placekitten.com/g/600/450'),
+          fit: BoxFit.fill,
         ),
+
         // borderRadius: const BorderRadius.all(
         //   Radius.circular(20),
         // ),
