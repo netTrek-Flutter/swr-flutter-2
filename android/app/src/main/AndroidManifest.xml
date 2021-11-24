@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.nettrek.swr.training2.training">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="training"
         android:icon="@mipmap/ic_launcher">

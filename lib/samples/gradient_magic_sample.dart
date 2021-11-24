@@ -6,13 +6,6 @@ class GradientMagicSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      // children: List.generate(
-      //   15,
-      //   (index) => Container(
-      //     child: Text('hello world $index'),
-      //     color: Colors.red,
-      //   ),
-      // ),
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -22,6 +15,7 @@ class GradientMagicSample extends StatelessWidget {
             alignment: Alignment.center,
             foregroundDecoration: const BoxDecoration(
               // backgroundBlendMode: BlendMode.exclusion,
+              // backgroundBlendMode: BlendMode.multiply
               backgroundBlendMode: BlendMode.overlay,
               gradient: LinearGradient(
                 colors: [
@@ -73,8 +67,8 @@ class GradientMagicSample extends StatelessWidget {
                 BoxShadow(blurRadius: 10),
               ],
               gradient: RadialGradient(
-                colors: const [Colors.yellow, Colors.blue],
-                stops: const [0.1, 1.0],
+                colors: [Colors.yellow, Colors.blue],
+                stops: [0.1, 1.0],
               ),
             ),
           ),
