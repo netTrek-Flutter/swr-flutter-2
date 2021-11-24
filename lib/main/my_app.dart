@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:training/main/my_home.dart';
 
+final ThemeData lightVariant = ThemeData.from(
+  colorScheme: const ColorScheme.light(
+    primary: Colors.amber,
+    secondary: Colors.orange,
+    onPrimary: Colors.black,
+    // background: Colors.grey,
+  ),
+);
+
 class MyApp extends StatelessWidget {
   final Widget body;
   const MyApp({
@@ -11,9 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.from(
-        colorScheme: const ColorScheme.light(),
-      ),
+      theme: lightVariant,
       darkTheme: ThemeData.from(
         colorScheme: const ColorScheme.dark(),
       ),
