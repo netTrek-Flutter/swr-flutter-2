@@ -31,7 +31,29 @@ class ContainerSample extends StatelessWidget {
       //   minHeight: 150,
       // ),
 
-      color: Colors.red,
+      // color: Colors.red,
+
+      decoration: BoxDecoration(
+        // color: Colors.red,
+        gradient: const LinearGradient(
+          colors: [Colors.red, Colors.green],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        // borderRadius: const BorderRadius.all(
+        //   Radius.circular(20),
+        // ),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(
+            20,
+          ),
+        ),
+        border: Border.all(
+          color: Colors.green,
+          style: BorderStyle.solid,
+          width: 5,
+        ),
+      ),
 
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(15),
