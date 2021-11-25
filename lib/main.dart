@@ -12,6 +12,7 @@ import 'package:training/samples/image_sample.dart';
 import 'package:training/samples/image_with_border.dart';
 import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
+import 'package:training/samples/transform_sample.dart';
 
 import 'main/my_app.dart';
 
@@ -29,6 +30,7 @@ void main() {
     // body: ImageWithBorder(),
     // body: SvgSample(),
     // body: DrawSample(),
-    body: CustomPainterSample(),
+    // body: CustomPainterSample(),
+    body: TransformSample(),
   ));
 }

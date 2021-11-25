@@ -101,10 +101,11 @@ class ButtonSample extends StatelessWidget {
           label: const Text('OutlinedButton with Icon'),
           icon: const Icon(Icons.add),
         ),
-        // const Center(
-        //   widthFactor: 1,
-        //   child: Text('hello'),
-        // )
+        const Center(
+          widthFactor: 2,
+          heightFactor: 1.5,
+          child: Text('hello'),
+        )
       ],
     );
   }
