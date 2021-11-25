@@ -7,6 +7,8 @@ import 'package:training/samples/container_sample.dart';
 import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
+import 'package:training/samples/image_with_border.dart';
+import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
 
 import 'main/my_app.dart';
@@ -21,6 +23,8 @@ void main() {
     // body: TextSample(),
     // body: IconSample(),
     // body: ButtonSample(),
-    body: ImageSample(),
+    // body: ImageSample(),
+    // body: ImageWithBorder(),
+    body: SvgSample(),
   ));
 }
