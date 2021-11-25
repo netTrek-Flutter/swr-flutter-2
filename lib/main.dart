@@ -10,6 +10,7 @@ import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
 import 'package:training/samples/image_with_border.dart';
+import 'package:training/samples/stack_sample.dart';
 import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
 import 'package:training/samples/transform_sample.dart';
@@ -31,6 +32,7 @@ void main() {
     // body: SvgSample(),
     // body: DrawSample(),
     // body: CustomPainterSample(),
-    body: TransformSample(),
+    // body: TransformSample(),
+    body: StackSample(),
   ));
 }
