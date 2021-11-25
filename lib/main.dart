@@ -6,6 +6,7 @@ import 'package:training/samples/column_sample_advanced.dart';
 import 'package:training/samples/container_sample.dart';
 import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
+import 'package:training/samples/image_sample.dart';
 import 'package:training/samples/text_sample.dart';
 
 import 'main/my_app.dart';
@@ -16,9 +17,10 @@ void main() {
     // body: ContainerSample(),
     // body: GradientMagicSample(),
     // body: ColumnSample(),
-    body: ColumnSampleAdvanced(),
+    // body: ColumnSampleAdvanced(),
     // body: TextSample(),
     // body: IconSample(),
     // body: ButtonSample(),
+    body: ImageSample(),
   ));
 }
