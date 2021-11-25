@@ -85,18 +85,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // theme: myTheme,
-      // darkTheme: ThemeData.from(
-      //   colorScheme: const ColorScheme.dark(),
-      // ),
-      // themeMode: ThemeMode.system, // default
-      // themeMode: ThemeMode.light,
-      // themeMode: ThemeMode.dark,
-      theme: myThemeWithButton,
-      home: MyHome(
-        body: body,
-      ),
-    );
+    // MediaQueryData mediaQueryData = MediaQuery.of(context);
+    // print(mediaQueryData);
+    return Builder(builder: (context) {
+      return MaterialApp(
+        // theme: myTheme,
+        // darkTheme: ThemeData.from(
+        //   colorScheme: const ColorScheme.dark(),
+        // ),
+        // themeMode: ThemeMode.system, // default
+        // themeMode: ThemeMode.light,
+        // themeMode: ThemeMode.dark,
+        theme: myThemeWithButton,
+        home: MyHome(
+          body: body,
+        ),
+      );
+    });
   }
 }
