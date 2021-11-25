@@ -12,14 +12,14 @@ class SliverViewSample extends StatelessWidget {
           backgroundColor: Colors.deepOrange,
           elevation: 10,
           expandedHeight: 200,
-          pinned: true,
+          pinned: false,
         ),
         SliverPadding(
           padding: EdgeInsets.symmetric(vertical: 0),
           sliver: SliverGrid(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => _buildFromIndex(index),
-                childCount: 80),
+                childCount: 8),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
           ),
@@ -33,13 +33,13 @@ class SliverViewSample extends StatelessWidget {
                       color: Colors.red,
                       margin: EdgeInsets.only(top: 5, bottom: 5),
                     ),
-                childCount: 300),
+                childCount: 3),
           ),
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
               (context, index) => _buildFromIndex(index),
-              childCount: 50),
+              childCount: 6),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
         ),
