@@ -4,6 +4,8 @@ import 'package:training/samples/center_sample.dart';
 import 'package:training/samples/column_sample.dart';
 import 'package:training/samples/column_sample_advanced.dart';
 import 'package:training/samples/container_sample.dart';
+import 'package:training/samples/custom_painter_sample.dart';
+import 'package:training/samples/draw_sample.dart';
 import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
@@ -25,6 +27,8 @@ void main() {
     // body: ButtonSample(),
     // body: ImageSample(),
     // body: ImageWithBorder(),
-    body: SvgSample(),
+    // body: SvgSample(),
+    // body: DrawSample(),
+    body: CustomPainterSample(),
   ));
 }
