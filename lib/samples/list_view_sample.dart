@@ -16,6 +16,12 @@ class ListViewSample extends StatelessWidget {
           if (snapshot.hasError) {
             return _buildErrorText(snapshot, context);
           } else if (snapshot.hasData) {
+            // return ListView.separated(
+            //   separatorBuilder: (context, index) => const Divider(),
+            //   itemBuilder: (context, index) =>
+            //       _buildListTile(snapshot.data![index], contentPadding: 0 ),
+            //   itemCount: snapshot.data?.length ?? 0,
+            // );
             return ListView.builder(
               itemBuilder: (context, index) =>
                   _buildListTile(snapshot.data![index]),
@@ -28,9 +34,10 @@ class ListViewSample extends StatelessWidget {
     );
   }
 
-  ListTile _buildListTile(PostModel post) {
+  ListTile _buildListTile(PostModel post, {double contentPadding = 16}) {
     return ListTile(
-      contentPadding: const EdgeInsets.all(16),
+      onTap: post.id == 2 ? null : () {},
+      contentPadding: EdgeInsets.all(contentPadding),
       tileColor: post.id! % 2 == 0 ? Colors.teal : Colors.teal.shade700,
       selectedTileColor: Colors.tealAccent,
       selected: post.id == 2,
