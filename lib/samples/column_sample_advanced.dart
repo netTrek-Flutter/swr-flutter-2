@@ -43,7 +43,7 @@ class ColumnSampleAdvanced extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                // fit: FlexFit.loose, // standard
+                flex: 2,
                 child: Container(
                   color: Colors.red,
                   child: const Text('data'),
@@ -54,12 +54,13 @@ class ColumnSampleAdvanced extends StatelessWidget {
                 children: [
                   Container(
                     constraints: const BoxConstraints(
-                      minHeight: 16,
+                      minHeight: 10,
                       maxHeight: 100,
                     ),
                     child: const Text(
-                      'data\ndata\ndata\ndata\ndata\ndata\ndata',
-                      textScaleFactor: 2,
+                      'data',
+                      // 'data\ndata\ndata\ndata\ndata\ndata\ndata',
+                      // textScaleFactor: 2,
                     ),
                     // child: const FittedBox(
                     //   fit: BoxFit.fill,
