@@ -10,6 +10,7 @@ import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
 import 'package:training/samples/image_with_border.dart';
+import 'package:training/samples/media_query_sample.dart';
 import 'package:training/samples/stack_sample.dart';
 import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
@@ -18,21 +19,26 @@ import 'package:training/samples/transform_sample.dart';
 import 'main/my_app.dart';
 
 void main() {
-  runApp(const MyApp(
-    // body: CenterSample(),
-    // body: ContainerSample(),
-    // body: GradientMagicSample(),
-    // body: ColumnSample(),
-    // body: ColumnSampleAdvanced(),
-    // body: TextSample(),
-    // body: IconSample(),
-    // body: ButtonSample(),
-    // body: ImageSample(),
-    // body: ImageWithBorder(),
-    // body: SvgSample(),
-    // body: DrawSample(),
-    // body: CustomPainterSample(),
-    // body: TransformSample(),
-    body: StackSample(),
-  ));
+  setPreferredOrientations();
+  runApp(
+    const MyApp(
+      // body: CenterSample(),
+      // body: ContainerSample(),
+      // body: GradientMagicSample(),
+      // body: ColumnSample(),
+      // body: ColumnSampleAdvanced(),
+      // body: TextSample(),
+      // body: IconSample(),
+      // body: ButtonSample(),
+      // body: ImageSample(),
+      // body: ImageWithBorder(),
+      // body: SvgSample(),
+      // body: DrawSample(),
+      // body: CustomPainterSample(),
+      // body: TransformSample(),
+      // body: StackSample(),
+      // body: MediaQuerySample()));
+      body: OrientationBuilderSample(),
+    ),
+  );
 }
