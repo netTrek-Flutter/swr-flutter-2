@@ -6,6 +6,7 @@ import 'package:training/samples/column_sample_advanced.dart';
 import 'package:training/samples/container_sample.dart';
 import 'package:training/samples/custom_painter_sample.dart';
 import 'package:training/samples/draw_sample.dart';
+import 'package:training/samples/future_builder_sample.dart';
 import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
@@ -40,7 +41,8 @@ void main() {
       // body: StackSample(),
       // body: MediaQuerySample()));
       // body: OrientationBuilderSample(),
-      body: MyInheritedSample(),
+      // body: MyInheritedSample(),
+      body: FutureBuilderSample(),
     ),
   );
 }
