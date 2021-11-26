@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:training/main/my_home.dart';
 
@@ -76,31 +78,67 @@ final ThemeData myThemeWithButton = ThemeData(
   ),
 );
 
+ThemeData getTheme(Size size) {
+  return ThemeData(
+    colorScheme: const ColorScheme.light(
+      primary: Colors.amber,
+      secondary: Colors.orange,
+      onPrimary: Colors.black,
+      // background: Colors.grey,
+    ),
+    fontFamily: 'Monospace',
+    textTheme: TextTheme(
+      bodyText2: TextStyle(
+        color: Colors.green,
+        fontSize: 14 * (size.width / 392.7),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: Colors.purple),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.orange.shade700, // dunkler
+      foregroundColor:
+          Colors.white, // Farbe mit der auf den Hintergrund gezeichnet wird
+      splashColor: Colors.red.shade100, // Farbeffekt beim Tappen
+      extendedTextStyle: const TextStyle(
+        // farbe eines Labels - falls benutz
+        color: Colors.white,
+      ),
+    ),
+  );
+}
+
 class MyApp extends StatelessWidget {
   final Widget body;
+  final Size size;
+  final double pixelRatio;
+  final double textScaleFactor;
+
   const MyApp({
     Key? key,
     required this.body,
+    required this.size,
+    required this.pixelRatio,
+    required this.textScaleFactor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // MediaQueryData mediaQueryData = MediaQuery.of(context);
-    // print(mediaQueryData);
-    return Builder(builder: (context) {
-      return MaterialApp(
-        // theme: myTheme,
-        // darkTheme: ThemeData.from(
-        //   colorScheme: const ColorScheme.dark(),
-        // ),
-        // themeMode: ThemeMode.system, // default
-        // themeMode: ThemeMode.light,
-        // themeMode: ThemeMode.dark,
-        theme: myThemeWithButton,
-        home: MyHome(
-          body: body,
-        ),
-      );
-    });
+    print(size);
+    return MaterialApp(
+      // theme: myTheme,
+      // darkTheme: ThemeData.from(
+      //   colorScheme: const ColorScheme.dark(),
+      // ),
+      // themeMode: ThemeMode.system, // default
+      // themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.dark,
+      // theme: myThemeWithButton,
+      theme: getTheme(size),
+      home: MyHome(
+        body: body,
+      ),
+    );
   }
 }

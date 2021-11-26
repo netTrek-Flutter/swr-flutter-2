@@ -22,10 +22,18 @@ class ListViewSample extends StatelessWidget {
             //       _buildListTile(snapshot.data![index], contentPadding: 0 ),
             //   itemCount: snapshot.data?.length ?? 0,
             // );
+
+            List<PostModel> dataProvider = snapshot.data!
+                .where((element) => element.id! % 2 == 0)
+                .toList()
+              ..sort((a, b) => a.title!.compareTo(b.title!));
+
             return ListView.builder(
               itemBuilder: (context, index) =>
-                  _buildListTile(snapshot.data![index]),
-              itemCount: snapshot.data?.length ?? 0,
+                  _buildListTile(dataProvider[index]),
+              // _buildListTile(snapshot.data![index]),
+              itemCount: dataProvider.length,
+              // itemCount: snapshot.data?.length ?? 0,
             );
           }
           return const CircularProgressIndicator();

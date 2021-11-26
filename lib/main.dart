@@ -26,14 +26,30 @@ import 'main/my_app.dart';
 
 void main() {
   setPreferredOrientations();
+
+  var _pixelRatio = WidgetsBinding.instance?.window.devicePixelRatio ?? 1;
+  var _screenWidth = WidgetsBinding.instance?.window.physicalSize.width ?? 400;
+  var _screenHeight =
+      WidgetsBinding.instance?.window.physicalSize.height ?? 800;
+  var _textScaleFactor = WidgetsBinding.instance?.window.textScaleFactor ?? 1;
+
+  var _width = _screenWidth / _pixelRatio;
+  var _height = _screenHeight / _pixelRatio;
+
+  print(
+      '$_width x $_height - pixelRatio:= $_pixelRatio textScaleFactor:= $_textScaleFactor');
+
   runApp(
-    const MyApp(
+    MyApp(
+      size: Size(_width, _height),
+      pixelRatio: _pixelRatio,
+      textScaleFactor: _textScaleFactor,
       // body: CenterSample(),
       // body: ContainerSample(),
       // body: GradientMagicSample(),
       // body: ColumnSample(),
       // body: ColumnSampleAdvanced(),
-      // body: TextSample(),
+      body: TextSample(),
       // body: IconSample(),
       // body: ButtonSample(),
       // body: ImageSample(),
@@ -43,14 +59,14 @@ void main() {
       // body: CustomPainterSample(),
       // body: TransformSample(),
       // body: StackSample(),
-      // body: MediaQuerySample()));
+      // body: MediaQuerySample()
       // body: OrientationBuilderSample(),
       // body: MyInheritedSample(),
       // body: FutureBuilderSample(),
       // body: ListViewSample(),
       // body: GridViewSample(),
       // body: GridViewSampleWithPAgeView(),
-      body: SliverViewSample(),
+      // body: SliverViewSample(),
     ),
   );
 }

@@ -30,6 +30,7 @@ class MediaQuerySample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
+    print(queryData);
     return Center(
       child: Row(
         children: queryData.orientation == Orientation.portrait
