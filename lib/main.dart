@@ -14,6 +14,7 @@ import 'package:training/samples/icons_sample.dart';
 import 'package:training/samples/image_sample.dart';
 import 'package:training/samples/image_with_border.dart';
 import 'package:training/samples/list_view_sample.dart';
+import 'package:training/samples/list_view_statefull_sample.dart';
 import 'package:training/samples/media_query_sample.dart';
 import 'package:training/samples/my_inherited_sample.dart';
 import 'package:training/samples/sliver_view_sample.dart';
@@ -37,8 +38,8 @@ void main() {
   var _width = _screenWidth / _pixelRatio;
   var _height = _screenHeight / _pixelRatio;
 
-  print(
-      '$_width x $_height - pixelRatio:= $_pixelRatio textScaleFactor:= $_textScaleFactor');
+  // print(
+  //     '$_width x $_height - pixelRatio:= $_pixelRatio textScaleFactor:= $_textScaleFactor');
 
   runApp(
     MyApp(
@@ -68,7 +69,10 @@ void main() {
       // body: GridViewSample(),
       // body: GridViewSampleWithPAgeView(),
       // body: SliverViewSample(),
-      body: const StatefullSample(),
+      // body: const StatefullSample(),
+      body: const ListViewStatefullSample(
+        selected: 2,
+      ),
     ),
   );
 }

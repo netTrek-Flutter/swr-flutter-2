@@ -124,7 +124,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(size);
+    // print(size);
     return MaterialApp(
       // theme: myTheme,
       // darkTheme: ThemeData.from(
