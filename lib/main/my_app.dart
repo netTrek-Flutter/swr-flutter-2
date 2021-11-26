@@ -59,9 +59,7 @@ final ThemeData myThemeWithButton = ThemeData(
   ),
   fontFamily: 'Monospace',
   textTheme: const TextTheme(
-    bodyText2: TextStyle(
-      color: Colors.green,
-    ),
+    bodyText2: TextStyle(color: Colors.green, fontSize: 22),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: Colors.purple),
