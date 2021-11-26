@@ -8,7 +8,7 @@ part 'post_event.dart';
 part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  PostBloc() : super(PostSetSelected(selected: 1)) {
+  PostBloc() : super(PostSetSelected(selected: 0)) {
     on<PostNextEvent>((event, emit) {
       emit(PostSetSelected(
           selected: min(state.selected + 1,
@@ -17,7 +17,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostPrevEvent>((event, emit) {
       emit(PostSetSelected(
           selected: max(state.selected - 1,
-              1))); // 100 weil das Testsystem nicht mehr hat
+              0))); // 100 weil das Testsystem nicht mehr hat
     });
     on<PostSetEvent>((event, emit) {
       emit(PostSetSelected(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/samples/bloc_sample/post_bloc.dart';
+import 'package:training/samples/cubit_sample/post_cubit.dart';
 
 final ThemeData lightVariant = ThemeData.from(
   colorScheme: const ColorScheme.light(
@@ -138,7 +139,7 @@ class MyApp extends StatelessWidget {
       // theme: myThemeWithButton,
       theme: getTheme(size),
       home: BlocProvider(
-        create: (context) => PostBloc(),
+        create: (context) => /*PostCubit()*/ PostBloc(),
         child: MyHome(
           body: body,
         ),

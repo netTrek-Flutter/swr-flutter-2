@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:training/samples/bloc_sample/list_view_with_bloc_builder_sample.dart';
 import 'package:training/samples/button_sample.dart';
 import 'package:training/samples/center_sample.dart';
 import 'package:training/samples/column_sample.dart';
 import 'package:training/samples/column_sample_advanced.dart';
 import 'package:training/samples/container_sample.dart';
+import 'package:training/samples/cubit_sample/bloc_builder_4_cubit_sample.dart';
 import 'package:training/samples/custom_painter_sample.dart';
 import 'package:training/samples/draw_sample.dart';
 import 'package:training/samples/future_builder_sample.dart';
@@ -74,7 +76,9 @@ void main() {
       // body: const ListViewStatefullSample(
       //   selected: 2,
       // ),
-      body: const UseBlocSample(),
+      // body: const UseBlocSample(),
+      body: const ListViewWithBlocBuilderSample(),
+      // body: const BlocBuilder4CubitSample(),
     ),
   );
 }
