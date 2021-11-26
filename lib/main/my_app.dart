@@ -2,7 +2,9 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
+import 'package:training/samples/bloc_sample/post_bloc.dart';
 
 final ThemeData lightVariant = ThemeData.from(
   colorScheme: const ColorScheme.light(
@@ -135,8 +137,11 @@ class MyApp extends StatelessWidget {
       // themeMode: ThemeMode.dark,
       // theme: myThemeWithButton,
       theme: getTheme(size),
-      home: MyHome(
-        body: body,
+      home: BlocProvider(
+        create: (context) => PostBloc(),
+        child: MyHome(
+          body: body,
+        ),
       ),
     );
   }

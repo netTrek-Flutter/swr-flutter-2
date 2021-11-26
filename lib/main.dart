@@ -23,6 +23,7 @@ import 'package:training/samples/statefull_sample.dart';
 import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
 import 'package:training/samples/transform_sample.dart';
+import 'package:training/samples/use_bloc_sample.dart';
 
 import 'main/my_app.dart';
 
@@ -70,9 +71,10 @@ void main() {
       // body: GridViewSampleWithPAgeView(),
       // body: SliverViewSample(),
       // body: const StatefullSample(),
-      body: const ListViewStatefullSample(
-        selected: 2,
-      ),
+      // body: const ListViewStatefullSample(
+      //   selected: 2,
+      // ),
+      body: const UseBlocSample(),
     ),
   );
 }
