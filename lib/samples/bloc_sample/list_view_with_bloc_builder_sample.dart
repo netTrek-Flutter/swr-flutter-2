@@ -40,11 +40,11 @@ class ListViewWithBlocBuilderSample extends StatelessWidget {
   }
 
   Widget _buildListViews(
-      List<PostModel> persons, int selected, PostBloc postBloc) {
+      List<PostModel> posts, int selected, PostBloc postBloc) {
     return ListView.builder(
-      itemBuilder: (context, index) => _buildListTileFromPost(persons[index],
-          isSelected: persons[index].id == selected, postBloc: postBloc),
-      itemCount: persons.length,
+      itemBuilder: (context, index) => _buildListTileFromPost(posts[index],
+          isSelected: posts[index].id == selected, postBloc: postBloc),
+      itemCount: posts.length,
     );
   }
 
