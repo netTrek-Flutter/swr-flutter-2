@@ -30,7 +30,7 @@ class _AnimiereContainerState extends State<AnimiereContainer>
           Center(
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
-              color: Colors.red,
+              color: _selectedColor,
               width: _size,
               height: _size,
             ),
@@ -50,7 +50,8 @@ class _AnimiereContainerState extends State<AnimiereContainer>
             min: 1,
             max: 10,
             divisions: 9,
-          )
+          ),
+          Spacer(),
         ],
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:training/samples/animation_ctrl_sample.dart';
+import 'package:training/samples/animation_sample.dart';
 import 'package:training/samples/bloc_sample/list_view_with_bloc_builder_sample.dart';
 import 'package:training/samples/button_sample.dart';
 import 'package:training/samples/center_sample.dart';
@@ -20,6 +22,7 @@ import 'package:training/samples/list_view_sample.dart';
 import 'package:training/samples/list_view_statefull_sample.dart';
 import 'package:training/samples/media_query_sample.dart';
 import 'package:training/samples/my_inherited_sample.dart';
+import 'package:training/samples/navigation/navigation_sample.dart';
 import 'package:training/samples/sliver_view_sample.dart';
 import 'package:training/samples/stack_sample.dart';
 import 'package:training/samples/statefull_sample.dart';
@@ -80,7 +83,10 @@ void main() {
       // body: const UseBlocSample(),
       // body: const ListViewWithBlocBuilderSample(),
       // body: const BlocBuilder4CubitSample(),
-      body: const GestureSample(),
+      // body: const GestureSample(),
+      // body: const AnimiereContainer(defaultSize: 10),
+      // body: const AnimationCtrlSample(),
+      body: const NavigationSampleSimple(),
     ),
   );
 }
