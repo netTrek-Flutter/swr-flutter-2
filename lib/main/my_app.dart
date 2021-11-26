@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -88,7 +89,7 @@ ThemeData getTheme(Size size) {
     textTheme: TextTheme(
       bodyText2: TextStyle(
         color: Colors.green,
-        fontSize: 14 * (size.width / 392.7),
+        fontSize: 14 * (min(size.width, size.height) / 392.7),
       ),
     ),
     textButtonTheme: TextButtonThemeData(

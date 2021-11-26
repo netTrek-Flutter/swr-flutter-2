@@ -18,6 +18,7 @@ import 'package:training/samples/media_query_sample.dart';
 import 'package:training/samples/my_inherited_sample.dart';
 import 'package:training/samples/sliver_view_sample.dart';
 import 'package:training/samples/stack_sample.dart';
+import 'package:training/samples/statefull_sample.dart';
 import 'package:training/samples/svg_sample.dart';
 import 'package:training/samples/text_sample.dart';
 import 'package:training/samples/transform_sample.dart';
@@ -49,7 +50,7 @@ void main() {
       // body: GradientMagicSample(),
       // body: ColumnSample(),
       // body: ColumnSampleAdvanced(),
-      body: TextSample(),
+      // body: TextSample(),
       // body: IconSample(),
       // body: ButtonSample(),
       // body: ImageSample(),
@@ -67,6 +68,7 @@ void main() {
       // body: GridViewSample(),
       // body: GridViewSampleWithPAgeView(),
       // body: SliverViewSample(),
+      body: const StatefullSample(),
     ),
   );
 }
