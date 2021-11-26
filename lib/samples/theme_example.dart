@@ -100,7 +100,9 @@ class _ThemeExampleState extends State<ThemeExample> {
           textTheme: TextTheme(
             bodyText2: TextStyle(
               color: Colors.green,
-              fontSize: DefaultTextStyle.of(context).style.fontSize! *
+              fontSize: (Theme.of(context).textTheme.bodyText2 ??
+                          DefaultTextStyle.of(context).style)
+                      .fontSize! *
                   (size.width * 2 / 392.7),
             ),
           ),
