@@ -22,11 +22,15 @@ class ListViewSample extends StatelessWidget {
             //       _buildListTile(snapshot.data![index], contentPadding: 0 ),
             //   itemCount: snapshot.data?.length ?? 0,
             // );
+/*
 
             List<PostModel> dataProvider = snapshot.data!
                 .where((element) => element.id! % 2 == 0)
                 .toList()
               ..sort((a, b) => a.title!.compareTo(b.title!));
+*/
+
+            List<PostModel> dataProvider = snapshot.data!;
 
             return ListView.builder(
               itemBuilder: (context, index) =>
