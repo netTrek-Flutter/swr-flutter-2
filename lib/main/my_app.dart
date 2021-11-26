@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/samples/bloc_sample/post_bloc.dart';
+import 'package:training/samples/cubit_sample/bloc_builder_4_cubit_sample.dart';
 import 'package:training/samples/cubit_sample/post_cubit.dart';
+import 'package:training/samples/grid_view_sample.dart';
+import 'package:training/samples/image_with_border.dart';
+import 'package:training/samples/list_view_statefull_sample.dart';
+import 'package:training/samples/navigation/navigation_sample.dart';
 
 final ThemeData lightVariant = ThemeData.from(
   colorScheme: const ColorScheme.light(
@@ -111,15 +116,21 @@ ThemeData getTheme(Size size) {
   );
 }
 
+const page_list = 'list';
+const page_grid = 'grid';
+const page_image = 'image';
+
+const pages = [page_list, page_grid, page_image];
+
 class MyApp extends StatelessWidget {
-  final Widget body;
+  final Widget? body;
   final Size size;
   final double pixelRatio;
   final double textScaleFactor;
 
   const MyApp({
     Key? key,
-    required this.body,
+    this.body,
     required this.size,
     required this.pixelRatio,
     required this.textScaleFactor,
@@ -128,21 +139,57 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print(size);
-    return MaterialApp(
-      // theme: myTheme,
-      // darkTheme: ThemeData.from(
-      //   colorScheme: const ColorScheme.dark(),
-      // ),
-      // themeMode: ThemeMode.system, // default
-      // themeMode: ThemeMode.light,
-      // themeMode: ThemeMode.dark,
-      // theme: myThemeWithButton,
-      theme: getTheme(size),
-      home: BlocProvider(
-        create: (context) => PostCubit() /*PostBloc()*/,
-        child: MyHome(
-          body: body,
-        ),
+    return BlocProvider(
+      create: (context) => PostCubit() /*PostBloc()*/,
+      child: MaterialApp(
+        // theme: myTheme,
+        // darkTheme: ThemeData.from(
+        //   colorScheme: const ColorScheme.dark(),
+        // ),
+        // themeMode: ThemeMode.system, // default
+        // themeMode: ThemeMode.light,
+        // themeMode: ThemeMode.dark,
+        // theme: myThemeWithButton,
+        theme: getTheme(size),
+        initialRoute: page_list,
+        onGenerateRoute: (settings) {
+          print(settings);
+          switch (settings.name) {
+            case page_list:
+              return MaterialPageRoute(
+                builder: (context) {
+                  return MyHome(
+                      label: settings.name!,
+                      body: ListViewStatefullSample(
+                        selected: int.tryParse(settings.arguments.toString()),
+                      ));
+                },
+              );
+            case page_grid:
+              return MaterialPageRoute(
+                builder: (context) {
+                  return MyHome(
+                      label: settings.name!, body: const GridViewSample());
+                },
+              );
+            case page_image:
+              return MaterialPageRoute(
+                builder: (context) {
+                  return MyHome(
+                      label: settings.name!, body: const ImageWithBorder());
+                },
+              );
+            // default:
+            //   return MaterialPageRoute(
+            //     builder: (context) {
+            //       return const MyHome(body: NavigationSampleSimple());
+            //     },
+            //   );
+          }
+        },
+        // home: MyHome(
+        //   body: body,
+        // ),
       ),
     );
   }

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:training/main/my_app.dart';
 
 class CommonBottomNavBar extends StatelessWidget {
-  const CommonBottomNavBar({
+  int currentIndex;
+
+  CommonBottomNavBar({
     Key? key,
+    required this.currentIndex,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      currentIndex: this.currentIndex,
+      onTap: (value) => Navigator.pushNamed(
+        context,
+        pages[value], /*arguments: 1*/
+      ),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.call),

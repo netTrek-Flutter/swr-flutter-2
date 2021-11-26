@@ -86,7 +86,7 @@ void main() {
       // body: const GestureSample(),
       // body: const AnimiereContainer(defaultSize: 10),
       // body: const AnimationCtrlSample(),
-      body: const NavigationSampleSimple(),
+      // body: const NavigationSampleSimple(),
     ),
   );
 }
