@@ -8,6 +8,7 @@ import 'package:training/samples/bloc_sample/post_bloc.dart';
 import 'package:training/samples/cubit_sample/bloc_builder_4_cubit_sample.dart';
 import 'package:training/samples/cubit_sample/post_cubit.dart';
 import 'package:training/samples/grid_view_sample.dart';
+import 'package:training/samples/grid_view_sample_with_pageview.dart';
 import 'package:training/samples/image_with_border.dart';
 import 'package:training/samples/list_view_statefull_sample.dart';
 import 'package:training/samples/navigation/navigation_sample.dart';
@@ -169,7 +170,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (context) {
                   return MyHome(
-                      label: settings.name!, body: const GridViewSample());
+                      label: settings.name!,
+                      body: const GridViewSampleWithPAgeView());
                 },
               );
             case page_image:

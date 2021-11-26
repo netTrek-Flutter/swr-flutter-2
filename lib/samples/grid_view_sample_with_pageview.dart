@@ -8,20 +8,17 @@ class GridViewSampleWithPAgeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: FutureBuilder<List<PostModel>>(
-          future: PostService('https://jsonplaceholder.typicode.com/posts')
-              .getPosts(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return _buildErrorText(snapshot, context);
-            } else if (snapshot.hasData) {
-              return _buildGridViews(snapshot.data!);
-            }
-            return const CircularProgressIndicator();
-          }),
-    );
+    return FutureBuilder<List<PostModel>>(
+        future: PostService('https://jsonplaceholder.typicode.com/posts')
+            .getPosts(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return _buildErrorText(snapshot, context);
+          } else if (snapshot.hasData) {
+            return _buildGridViews(snapshot.data!);
+          }
+          return const CircularProgressIndicator();
+        });
   }
 
   Text _buildErrorText(
