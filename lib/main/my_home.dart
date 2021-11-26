@@ -65,6 +65,7 @@ class MyHome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
+                heroTag: 'saban',
                 onPressed: () => cubit.prev(),
                 child: const Icon(Icons.arrow_downward),
               ),
@@ -72,6 +73,7 @@ class MyHome extends StatelessWidget {
                 width: 5,
               ),
               FloatingActionButton(
+                heroTag: 'nik',
                 onPressed: () => cubit.next(),
                 child: const Icon(Icons.arrow_upward),
               ),
