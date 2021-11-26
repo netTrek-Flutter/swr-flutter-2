@@ -139,7 +139,7 @@ class MyApp extends StatelessWidget {
       // theme: myThemeWithButton,
       theme: getTheme(size),
       home: BlocProvider(
-        create: (context) => /*PostCubit()*/ PostBloc(),
+        create: (context) => PostCubit() /*PostBloc()*/,
         child: MyHome(
           body: body,
         ),

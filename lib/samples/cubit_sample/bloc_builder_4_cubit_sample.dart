@@ -27,9 +27,9 @@ class BlocBuilder4CubitSample extends StatelessWidget {
             TextButton(
               onPressed: () {
                 print(postBloc);
-                postBloc.setSelected(111);
+                postBloc.setSelected(11);
               },
-              child: const Text('cubit  -> id 111'),
+              child: const Text('cubit  -> id 11'),
             ),
           ],
         );

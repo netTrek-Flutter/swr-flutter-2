@@ -9,6 +9,7 @@ import 'package:training/samples/cubit_sample/bloc_builder_4_cubit_sample.dart';
 import 'package:training/samples/custom_painter_sample.dart';
 import 'package:training/samples/draw_sample.dart';
 import 'package:training/samples/future_builder_sample.dart';
+import 'package:training/samples/gesture_sample.dart';
 import 'package:training/samples/gradient_magic_sample.dart';
 import 'package:training/samples/grid_view_sample.dart';
 import 'package:training/samples/grid_view_sample_with_pageview.dart';
@@ -77,8 +78,9 @@ void main() {
       //   selected: 2,
       // ),
       // body: const UseBlocSample(),
-      body: const ListViewWithBlocBuilderSample(),
+      // body: const ListViewWithBlocBuilderSample(),
       // body: const BlocBuilder4CubitSample(),
+      body: const GestureSample(),
     ),
   );
 }
