@@ -23,5 +23,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(PostSetSelected(
           selected: event.selected)); // 100 weil das Testsystem nicht mehr hat
     });
+    on<PostSetTitleAndIdEvent>((event, emit) {
+      emit(PostSetSelected(
+          selected: event.selected, selectedTitle: event.title )); // 100 weil das Testsystem nicht mehr hat
+    });
   }
 }

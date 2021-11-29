@@ -8,6 +8,12 @@ abstract class PostState {
 class PostSetSelected extends PostState {
   @override
   final int selected;
+  final String? selectedTitle;
 
-  PostSetSelected({required this.selected});
+  PostSetSelected({required this.selected, this.selectedTitle});
+
+  @override
+  String toString() {
+    return 'PostSetSelected{selected: $selected, selectedTitle: $selectedTitle}';
+  }
 }

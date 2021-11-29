@@ -12,3 +12,10 @@ class PostSetEvent extends PostEvent {
 
   PostSetEvent(this.selected);
 }
+
+class PostSetTitleAndIdEvent extends PostEvent {
+  final int selected;
+  final String title;
+
+  PostSetTitleAndIdEvent(this.selected, this.title);
+}

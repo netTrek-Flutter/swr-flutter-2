@@ -12,6 +12,7 @@ import 'package:training/samples/grid_view_sample_with_pageview.dart';
 import 'package:training/samples/image_with_border.dart';
 import 'package:training/samples/list_view_statefull_sample.dart';
 import 'package:training/samples/navigation/navigation_sample.dart';
+import 'package:training/samples/navigation/routing.dart';
 
 final ThemeData lightVariant = ThemeData.from(
   colorScheme: const ColorScheme.light(
@@ -141,7 +142,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // print(size);
     return BlocProvider(
-      create: (context) => PostCubit() /*PostBloc()*/,
+      create: (context) => /*PostCubit()*/ PostBloc(),
       child: MaterialApp(
         // theme: myTheme,
         // darkTheme: ThemeData.from(
@@ -153,42 +154,7 @@ class MyApp extends StatelessWidget {
         // theme: myThemeWithButton,
         theme: getTheme(size),
         initialRoute: page_list,
-        onGenerateRoute: (settings) {
-          print(settings);
-          switch (settings.name) {
-            case page_list:
-              return MaterialPageRoute(
-                builder: (context) {
-                  return MyHome(
-                      label: settings.name!,
-                      body: ListViewStatefullSample(
-                        selected: int.tryParse(settings.arguments.toString()),
-                      ));
-                },
-              );
-            case page_grid:
-              return MaterialPageRoute(
-                builder: (context) {
-                  return MyHome(
-                      label: settings.name!,
-                      body: const GridViewSampleWithPAgeView());
-                },
-              );
-            case page_image:
-              return MaterialPageRoute(
-                builder: (context) {
-                  return MyHome(
-                      label: settings.name!, body: const ImageWithBorder());
-                },
-              );
-            // default:
-            //   return MaterialPageRoute(
-            //     builder: (context) {
-            //       return const MyHome(body: NavigationSampleSimple());
-            //     },
-            //   );
-          }
-        },
+        onGenerateRoute: generateRoute,
         // home: MyHome(
         //   body: body,
         // ),
