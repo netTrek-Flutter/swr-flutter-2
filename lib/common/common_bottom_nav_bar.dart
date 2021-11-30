@@ -11,19 +11,15 @@ class CommonBottomNavBar extends StatelessWidget {
     Widget body, {
     Key? key,
   }) : super(key: key) {
-    // log(body.toString());
     currentIndex = isListView(body) ? 0 : null;
-    // log('index when list $currentIndex');
     currentIndex ??= isGridView(body) ? 1 : null;
-    // log('index when grid $currentIndex');
     currentIndex ??= isImageView(body) ? 2 : null;
-    // log('index when img $currentIndex');
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: currentIndex ?? -1,
+      currentIndex: currentIndex ?? 0,
       onTap: (value) => Navigator.pushNamed(
         context,
         pages[value], /*arguments: 1*/
@@ -45,3 +41,8 @@ class CommonBottomNavBar extends StatelessWidget {
     );
   }
 }
+
+CommonBottomNavBar? buildCommonBottomNavBar(Widget body) =>
+    (isListView(body) || isGridView(body) || isImageView(body))
+        ? CommonBottomNavBar(body)
+        : null;

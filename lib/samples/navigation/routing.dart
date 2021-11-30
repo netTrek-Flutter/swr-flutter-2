@@ -1,14 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:training/main/my_app.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/samples/bloc_sample/list_view_with_bloc_builder_sample.dart';
 import 'package:training/samples/navigation/post_detail_view.dart';
 
 import '../grid_view_sample_with_pageview.dart';
 import '../image_with_border.dart';
-import '../list_view_statefull_sample.dart';
+
+const String page_list = 'list';
+const String page_grid = 'grid';
+const String page_image = 'image';
+
+const pages = [page_list, page_grid, page_image];
 
 bool isListView(Widget widget) =>
     widget is ListViewWithBlocBuilderSample || widget is PostDetailView;
@@ -40,15 +44,15 @@ Map<String, WidgetBuilder> routes2 = {
 Map<String, MaterialPageRoute> routes = {
   page_list: MaterialPageRoute(
     builder: (context) {
-      log('builder 4 pageRoute');
-      return MyHome(label: page_list, body: ListViewWithBlocBuilderSample());
+      return MyHome(
+          label: page_list, body: const ListViewWithBlocBuilderSample());
     },
   ),
   page_grid: MaterialPageRoute(
     builder: (context) {
       return MyHome(
         label: page_grid,
-        body: GridViewSampleWithPAgeView(),
+        body: const GridViewSampleWithPAgeView(),
       );
     },
   ),
@@ -56,7 +60,7 @@ Map<String, MaterialPageRoute> routes = {
     builder: (context) {
       return MyHome(
         label: page_image,
-        body: ImageWithBorder(),
+        body: const ImageWithBorder(),
       );
     },
   )
