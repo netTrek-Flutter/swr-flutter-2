@@ -1,34 +1,45 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:training/main/my_app.dart';
+import 'package:training/samples/navigation/routing.dart';
 
 class CommonBottomNavBar extends StatelessWidget {
   int? currentIndex;
 
-  CommonBottomNavBar({
+  CommonBottomNavBar(
+    Widget body, {
     Key? key,
-    this.currentIndex,
-  }) : super(key: key);
+  }) : super(key: key) {
+    // log(body.toString());
+    currentIndex = isListView(body) ? 0 : null;
+    // log('index when list $currentIndex');
+    currentIndex ??= isGridView(body) ? 1 : null;
+    // log('index when grid $currentIndex');
+    currentIndex ??= isImageView(body) ? 2 : null;
+    // log('index when img $currentIndex');
+  }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      // currentIndex: this.currentIndex,
+      currentIndex: currentIndex ?? -1,
       onTap: (value) => Navigator.pushNamed(
         context,
         pages[value], /*arguments: 1*/
       ),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.call),
-          label: 'call',
+          icon: Icon(Icons.format_list_bulleted),
+          label: 'list',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: 'chat',
+          icon: Icon(Icons.grid_on),
+          label: 'grid',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.camera),
-          label: 'camera',
+          icon: Icon(Icons.image),
+          label: 'image',
         )
       ],
     );

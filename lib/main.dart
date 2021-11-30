@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/samples/animation_ctrl_sample.dart';
 import 'package:training/samples/animation_sample.dart';
 import 'package:training/samples/bloc_sample/list_view_with_bloc_builder_sample.dart';
@@ -32,6 +33,7 @@ import 'package:training/samples/transform_sample.dart';
 import 'package:training/samples/use_bloc_sample.dart';
 
 import 'main/my_app.dart';
+import 'samples/bloc_advanced_sample/post_bloc.dart';
 
 void main() {
   setPreferredOrientations();
@@ -49,44 +51,47 @@ void main() {
   //     '$_width x $_height - pixelRatio:= $_pixelRatio textScaleFactor:= $_textScaleFactor');
 
   runApp(
-    MyApp(
-      size: Size(_width, _height),
-      pixelRatio: _pixelRatio,
-      textScaleFactor: _textScaleFactor,
-      // body: CenterSample(),
-      // body: ContainerSample(),
-      // body: GradientMagicSample(),
-      // body: ColumnSample(),
-      // body: ColumnSampleAdvanced(),
-      // body: TextSample(),
-      // body: IconSample(),
-      // body: ButtonSample(),
-      // body: ImageSample(),
-      // body: ImageWithBorder(),
-      // body: SvgSample(),
-      // body: DrawSample(),
-      // body: CustomPainterSample(),
-      // body: TransformSample(),
-      // body: StackSample(),
-      // body: MediaQuerySample()
-      // body: OrientationBuilderSample(),
-      // body: MyInheritedSample(),
-      // body: FutureBuilderSample(),
-      // body: ListViewSample(),
-      // body: GridViewSample(),
-      // body: GridViewSampleWithPAgeView(),
-      // body: SliverViewSample(),
-      // body: const StatefullSample(),
-      // body: const ListViewStatefullSample(
-      //   selected: 2,
-      // ),
-      // body: const UseBlocSample(),
-      // body: const ListViewWithBlocBuilderSample(),
-      // body: const BlocBuilder4CubitSample(),
-      // body: const GestureSample(),
-      // body: const AnimiereContainer(defaultSize: 10),
-      // body: const AnimationCtrlSample(),
-      // body: const NavigationSampleSimple(),
+    BlocProvider(
+      create: (context) => /*PostCubit()*/ PostBloc(),
+      child: MyApp(
+        size: Size(_width, _height),
+        pixelRatio: _pixelRatio,
+        textScaleFactor: _textScaleFactor,
+        // body: CenterSample(),
+        // body: ContainerSample(),
+        // body: GradientMagicSample(),
+        // body: ColumnSample(),
+        // body: ColumnSampleAdvanced(),
+        // body: TextSample(),
+        // body: IconSample(),
+        // body: ButtonSample(),
+        // body: ImageSample(),
+        // body: ImageWithBorder(),
+        // body: SvgSample(),
+        // body: DrawSample(),
+        // body: CustomPainterSample(),
+        // body: TransformSample(),
+        // body: StackSample(),
+        // body: MediaQuerySample()
+        // body: OrientationBuilderSample(),
+        // body: MyInheritedSample(),
+        // body: FutureBuilderSample(),
+        // body: ListViewSample(),
+        // body: GridViewSample(),
+        // body: GridViewSampleWithPAgeView(),
+        // body: SliverViewSample(),
+        // body: const StatefullSample(),
+        // body: const ListViewStatefullSample(
+        //   selected: 2,
+        // ),
+        // body: const UseBlocSample(),
+        // body: const ListViewWithBlocBuilderSample(),
+        // body: const BlocBuilder4CubitSample(),
+        // body: const GestureSample(),
+        // body: const AnimiereContainer(defaultSize: 10),
+        // body: const AnimationCtrlSample(),
+        // body: const NavigationSampleSimple(),
+      ),
     ),
   );
 }

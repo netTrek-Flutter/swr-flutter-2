@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:ui';
 
@@ -6,44 +7,92 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/common/common_bottom_nav_bar.dart';
 import 'package:training/common/factories.dart';
 import 'package:training/main/my_app.dart';
+import 'package:training/rest/post_model.dart';
 import 'package:training/samples/bloc_advanced_sample/post_bloc.dart';
+import 'package:training/samples/bloc_sample/list_view_with_bloc_builder_sample.dart';
 import 'package:training/samples/bloc_sample/post_bloc.dart';
+import 'package:training/samples/navigation/post_detail_view.dart';
+import 'package:training/samples/navigation/routing.dart';
 // import 'package:training/samples/cubit_sample/post_cubit.dart';
 
-class MyHome extends StatelessWidget {
+class MyHome extends StatefulWidget {
   final String label;
   final Widget body;
 
-  const MyHome({
+  MyHome({
     Key? key,
     this.label = 'app title',
     required this.body,
   }) : super(key: key);
 
-  // für Bloc
+  @override
+  State<MyHome> createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  StreamSubscription<PostState>? subscription;
+
+  PostModel? selected;
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription?.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
+    if (widget.body is ListViewWithBlocBuilderSample) {
+      _observeState2OpenDetails(bloc, context);
+    }
+    // Navigator.of(context).
     return BlocBuilder<PostBloc, PostState>(
-      // buildWhen: (prev, next) {
-      //   log('prev ${prev}');
-      //   log('next ${next}');
-      //   log((prev != next).toString());
-      //   return prev != next;
-      // },
       builder: (context, state) {
-        log('** $state');
+        // log('** ${state.selected?.title ?? widget.label} $state');
         return Scaffold(
-          appBar: AppBar(
-            title: buildText(label),
-          ),
-          body: body,
-          floatingActionButton: Row(
+          appBar: buildAppBar(state, widget.body),
+          body: widget.body,
+          floatingActionButton: _buildFloatingActionButton(bloc),
+          bottomNavigationBar: CommonBottomNavBar(widget.body),
+        );
+      },
+    );
+  }
+
+  AppBar buildAppBar(PostState state, Widget body) {
+    Widget? icon;
+    //
+    // icon = isListView(body) ? const Icon(Icons.format_list_bulleted) : null;
+    // icon ??= isGridView(body) ? const Icon(Icons.grid_on) : null;
+    // icon ??= isImageView(body) ? const Icon(Icons.image) : null;
+    //
+    Widget text = _buildAppBarText(state, widget.body is PostDetailView);
+    Widget title = icon == null
+        ? text
+        : Row(
+            children: [
+              icon,
+              text,
+            ],
+          );
+
+    return AppBar(
+      title: title,
+    );
+  }
+
+  Text _buildAppBarText(PostState state, bool isDetailView) => buildText(
+      isDetailView ? state.selected?.title ?? widget.label : widget.label);
+
+  Row? _buildFloatingActionButton(PostBloc bloc) {
+    return isListView(widget.body)
+        ? Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
                 heroTag: 'fBTNdownward',
-                onPressed: null, //() => bloc.add(PostNextEvent()),
+                onPressed: () => bloc.add(PostNextEvent()),
                 child: const Icon(Icons.arrow_downward),
               ),
               const SizedBox(
@@ -51,50 +100,35 @@ class MyHome extends StatelessWidget {
               ),
               FloatingActionButton(
                 heroTag: 'fBTNupward',
-                onPressed: () => null, //bloc.add(PostPrevEvent()),
+                onPressed: () => bloc.add(PostPrevEvent()),
                 child: const Icon(Icons.arrow_upward),
               ),
             ],
-          ),
-          bottomNavigationBar: CommonBottomNavBar(),
-        );
-      },
-    );
+          )
+        : null;
   }
-/*
-  @override
-  Widget builds(BuildContext context) {
-    PostCubit cubit = BlocProvider.of<PostCubit>(context);
-    return BlocBuilder<PostCubit, PostState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: buildText('$label - ${state.selected}'),
-          ),
-          body: body,
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                heroTag: 'saban',
-                onPressed: () => cubit.prev(),
-                child: const Icon(Icons.arrow_downward),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              FloatingActionButton(
-                heroTag: 'nik',
-                onPressed: () => cubit.next(),
-                child: const Icon(Icons.arrow_upward),
-              ),
-            ],
-          ),
-          bottomNavigationBar:
-              CommonBottomNavBar(currentIndex: pages.indexOf(label)),
-        );
-      },
-    );
+
+  void _observeState2OpenDetails(PostBloc bloc, BuildContext context) {
+    // log('handle subscription $context ${widget.body}');
+    subscription ??= bloc.stream
+        .where((state) =>
+            (state is PostSelected /* || state is PostNoSelection*/) &&
+            selected != state.selected)
+        .listen((state) async {
+      selected = state.selected;
+      // subscription?.cancel();
+      // log('open');
+      final response = await Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return MyHome(body: const PostDetailView());
+        },
+      ));
+      // log('closed $response');
+      Navigator.popUntil(context, (route) {
+        // log(route.toString());
+        return route.settings.name == page_list;
+      });
+      bloc.add(const PostSelectEvent(selected: null));
+    });
   }
-  */
 }

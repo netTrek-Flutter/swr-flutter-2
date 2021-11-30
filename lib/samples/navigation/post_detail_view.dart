@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/rest/post_model.dart';
 import 'package:training/rest/post_service.dart';
+import 'package:training/samples/bloc_advanced_sample/post_bloc.dart';
 import 'package:training/samples/bloc_sample/post_bloc.dart';
 
 class PostDetailView extends StatelessWidget {
@@ -10,47 +11,23 @@ class PostDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
-/*
-    final PostBloc postBloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
-      buildWhen: (prev, next) {
-        print('1-prev ${prev}');
-        print('1-next ${next}');
-        return prev.selected != next.selected;
+      buildWhen: (previous, current) => current.selected != null,
+      builder: (context, state) {
+        return ListTile(
+          contentPadding: const EdgeInsets.all(16),
+          tileColor:
+              state.selected!.id! % 2 == 0 ? Colors.teal.shade700 : Colors.teal,
+          subtitle: Text(
+            state.selected!.body!,
+          ),
+          title: Text(
+            state.selected!.title!,
+          ),
+          // trailing: Icon(Icons.adaptive.more_outlined),
+        );
+        ;
       },
-      builder: (context, state) => FutureBuilder<PostModel>(
-        future: PostService('https://jsonplaceholder.typicode.com/posts')
-            .getPostById(state.selected),
-        builder: (context, snapshot) {
-          print('1 - rebuild');
-          if (snapshot.hasError) {
-            return _buildErrorText(snapshot, context);
-          } else if (snapshot.hasData) {
-            postBloc.add(PostSetTitleAndIdEvent(
-                snapshot.data!.id!, snapshot.data!.title!));
-            return BlocBuilder<PostBloc, PostState>(
-              builder: (context, state) {
-                final PostBloc postBloc = BlocProvider.of<PostBloc>(context);
-                return Text(snapshot.data!.toString());
-              },
-            );
-          }
-          return const CircularProgressIndicator();
-        },
-      ),
-    );
-    */
-  }
-
-  Text _buildErrorText(
-      AsyncSnapshot<PostModel?> snapshot, BuildContext context) {
-    print(snapshot.error);
-    return Text(
-      '${snapshot.error}',
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.error,
-      ),
     );
   }
 }

@@ -28,6 +28,11 @@ class PostLoadEvent extends PostEvent {
   List<Object?> get props => [];
 }
 
+class PostLoadingEvent extends PostEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 class PostLoadedEvent extends PostEvent {
   @override
   List<Object?> get props => [];

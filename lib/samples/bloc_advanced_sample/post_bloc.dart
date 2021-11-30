@@ -11,9 +11,9 @@ part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc() : super(const PostInitial()) {
-    log('init Bloc');
-    log((null == null).toString());
+    // log('init Bloc');
     on<PostLoadEvent>(_postLoad);
+    on<PostLoadingEvent>(_postLoading);
     on<PostLoadedEvent>(_postLoaded);
     on<PostLoadErrorEvent>(_postLoadError);
     on<PostSelectEvent>(_postSelect);
@@ -21,7 +21,12 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostPrevEvent>(_selectPrevPost);
   }
 
+  FutureOr<void> _postLoading(PostLoadingEvent event, Emitter<PostState> emit) {
+    emit(const PostLoadingPosts());
+  }
+
   FutureOr<void> _postLoad(PostLoadEvent event, Emitter<PostState> emit) async {
+    add(PostLoadingEvent());
     try {
       final posts =
           await PostService('https://jsonplaceholder.typicode.com/posts')

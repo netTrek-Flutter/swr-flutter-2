@@ -1,41 +1,32 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/rest/post_model.dart';
 import 'package:training/rest/post_service.dart';
 import 'package:training/samples/bloc_advanced_sample/post_bloc.dart';
+import 'package:training/samples/navigation/post_detail_view.dart';
 // import 'package:training/samples/bloc_sample/post_bloc.dart';
 // import 'package:training/samples/navigation/post_detail_view.dart';
 
-class ListViewWithBlocBuilderSample extends StatefulWidget {
+class ListViewWithBlocBuilderSample extends StatelessWidget {
   const ListViewWithBlocBuilderSample({Key? key}) : super(key: key);
 
-  @override
-  _ListViewWithBlocBuilderSampleState createState() =>
-      _ListViewWithBlocBuilderSampleState();
-}
-
-class _ListViewWithBlocBuilderSampleState
-    extends State<ListViewWithBlocBuilderSample> {
-  // PostModel? selected;
-  // List<PostModel>? posts;
-  //
-  // _ListViewWithBlocBuilderSampleState({this.selected, this.posts});
-
-  @override
   Widget build(BuildContext context) {
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
+        // log('${çstate}');
         if (state is PostInitial && state.posts == null) {
-          // bloc.add(PostLoadEvent());
+          // log('trigger load ${state.hashCode}');
+          bloc.add(PostLoadEvent());
+          // } else if (state is PostSelected) {
+          //   log('open');
+          //   _openDetailView(state.selected /*, bloc*/, context);
         } else if (state is PostSelected ||
             state is PostNoSelection ||
             state is PostLoaded) {
-          // setState(() {
-          //   selected = state.selected;
-          //   posts = state.posts;
-          // });
           return _buildListViews(
             state.posts!,
             state.selected,
@@ -70,15 +61,6 @@ class _ListViewWithBlocBuilderSampleState
       itemCount: posts.length,
     );
   }
-
-  // _openDetailView(PostModel post, PostBloc postBloc, BuildContext context) {
-  //   postBloc.add(PostSetTitleAndIdEvent(post.id!, post.title!));
-  //   Navigator.push(context, MaterialPageRoute(
-  //     builder: (context) {
-  //       return MyHome(label: post.title!, body: const PostDetailView());
-  //     },
-  //   ));
-  // }
 
   Widget _buildListTileFromPost(
     PostModel post, {

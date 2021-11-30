@@ -8,12 +8,29 @@ abstract class PostState extends Equatable {
   const PostState();
 
   @override
-  List<Object?> get props => [error, posts, selected];
+  List<Object?> get props => [runtimeType, error, posts, selected];
 
   @override
   String toString() {
     return '$runtimeType{selected: $selected, posts: $posts, error: $error}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    final isEqual = identical(this, other) ||
+        super == other &&
+            other is PostState &&
+            runtimeType == other.runtimeType &&
+            selected == other.selected &&
+            posts == other.posts &&
+            error == other.error;
+    // log('isEqual $isEqual - ${runtimeType} # ${other.runtimeType}');
+    return isEqual;
+  }
+
+  @override
+  int get hashCode =>
+      super.hashCode ^ selected.hashCode ^ posts.hashCode ^ error.hashCode;
 }
 
 class PostInitial extends PostState {
@@ -29,9 +46,20 @@ class PostInitial extends PostState {
   Object? get error => null;
 }
 
-class PostLoadPosts extends PostInitial {}
+class PostLoadingPosts extends PostState {
+  const PostLoadingPosts();
 
-class PostLoaded extends PostInitial {
+  @override
+  List<PostModel>? get posts => null;
+
+  @override
+  PostModel? get selected => null;
+
+  @override
+  Object? get error => null;
+}
+
+class PostLoaded extends PostState {
   final List<PostModel> _posts;
 
   const PostLoaded({required List<PostModel> posts}) : _posts = posts;
@@ -39,11 +67,17 @@ class PostLoaded extends PostInitial {
   @override
   List<PostModel>? get posts => _posts;
 
+  // @override
+  // List<Object?> get props => [error, posts, selected];
+
   @override
-  List<Object?> get props => [error, posts, selected];
+  PostModel? get selected => null;
+
+  @override
+  Object? get error => null;
 }
 
-class PostLoadError extends PostInitial {
+class PostLoadError extends PostState {
   final Object _error;
 
   const PostLoadError({required Object error}) : _error = error;
@@ -52,27 +86,51 @@ class PostLoadError extends PostInitial {
   Object get error => _error;
 
   @override
-  List<Object?> get props => [error, posts, selected];
-}
-
-class PostNoSelection extends PostLoaded {
-  const PostNoSelection({required List<PostModel> posts}) : super(posts: posts);
+  List<PostModel>? get posts => null;
 
   @override
-  List<Object?> get props => [error, posts, selected];
+  PostModel? get selected => null;
+
+  // @override
+  // List<Object?> get props => [error, posts, selected];
 }
 
-class PostSelected extends PostNoSelection {
+class PostNoSelection extends PostState {
+  final List<PostModel> _posts;
+
+  const PostNoSelection({required List<PostModel> posts}) : _posts = posts;
+
+  // @override
+  // List<Object?> get props => [error, posts, selected];
+
+  @override
+  Object? get error => null;
+
+  @override
+  List<PostModel>? get posts => _posts;
+
+  @override
+  PostModel? get selected => null;
+}
+
+class PostSelected extends PostState {
   final PostModel _selected;
+  final List<PostModel> _posts;
 
   const PostSelected(
       {required PostModel selected, required List<PostModel> posts})
       : _selected = selected,
-        super(posts: posts);
+        _posts = posts;
 
   @override
   PostModel get selected => _selected;
 
   @override
-  List<Object?> get props => [error, posts, selected];
+  Object? get error => null;
+
+  @override
+  List<PostModel>? get posts => _posts;
+
+  // @override
+  // List<Object?> get props => [error, posts, selected];
 }
