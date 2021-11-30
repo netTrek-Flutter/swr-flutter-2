@@ -10,6 +10,8 @@ class PostDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container();
+/*
     final PostBloc postBloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
       buildWhen: (prev, next) {
@@ -38,6 +40,7 @@ class PostDetailView extends StatelessWidget {
         },
       ),
     );
+    */
   }
 
   Text _buildErrorText(

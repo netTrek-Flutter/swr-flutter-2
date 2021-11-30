@@ -3,64 +3,82 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/rest/post_model.dart';
 import 'package:training/rest/post_service.dart';
-import 'package:training/samples/bloc_sample/post_bloc.dart';
-import 'package:training/samples/navigation/post_detail_view.dart';
+import 'package:training/samples/bloc_advanced_sample/post_bloc.dart';
+// import 'package:training/samples/bloc_sample/post_bloc.dart';
+// import 'package:training/samples/navigation/post_detail_view.dart';
 
-class ListViewWithBlocBuilderSample extends StatelessWidget {
+class ListViewWithBlocBuilderSample extends StatefulWidget {
   const ListViewWithBlocBuilderSample({Key? key}) : super(key: key);
 
   @override
+  _ListViewWithBlocBuilderSampleState createState() =>
+      _ListViewWithBlocBuilderSampleState();
+}
+
+class _ListViewWithBlocBuilderSampleState
+    extends State<ListViewWithBlocBuilderSample> {
+  // PostModel? selected;
+  // List<PostModel>? posts;
+  //
+  // _ListViewWithBlocBuilderSampleState({this.selected, this.posts});
+
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<PostModel>>(
-      future:
-          PostService('https://jsonplaceholder.typicode.com/posts').getPosts(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return _buildErrorText(snapshot, context);
-        } else if (snapshot.hasData) {
-          return BlocBuilder<PostBloc, PostState>(
-            builder: (context, state) {
-              final PostBloc postBloc = BlocProvider.of<PostBloc>(context);
-              return _buildListViews(snapshot.data!, state.selected, postBloc,
-                  context: context);
-            },
+    PostBloc bloc = BlocProvider.of<PostBloc>(context);
+    return BlocBuilder<PostBloc, PostState>(
+      builder: (context, state) {
+        if (state is PostInitial && state.posts == null) {
+          // bloc.add(PostLoadEvent());
+        } else if (state is PostSelected ||
+            state is PostNoSelection ||
+            state is PostLoaded) {
+          // setState(() {
+          //   selected = state.selected;
+          //   posts = state.posts;
+          // });
+          return _buildListViews(
+            state.posts!,
+            state.selected,
+            bloc,
+            context: context,
           );
+        } else if (state is PostLoadError) {
+          return _buildErrorText(state.error, context);
         }
         return const CircularProgressIndicator();
       },
     );
   }
 
-  Text _buildErrorText(
-      AsyncSnapshot<List<PostModel>?> snapshot, BuildContext context) {
-    print(snapshot.error);
+  Text _buildErrorText(Object error, BuildContext context) {
     return Text(
-      '${snapshot.error}',
+      '${error}',
       style: TextStyle(
         color: Theme.of(context).colorScheme.error,
       ),
     );
   }
 
-  Widget _buildListViews(List<PostModel> posts, int selected, PostBloc postBloc,
+  Widget _buildListViews(
+      List<PostModel> posts, PostModel? selected, PostBloc postBloc,
       {required BuildContext context}) {
     return ListView.builder(
       itemBuilder: (context, index) => _buildListTileFromPost(posts[index],
-          isSelected: posts[index].id == selected,
+          isSelected: posts[index] == selected,
           postBloc: postBloc,
           context: context),
       itemCount: posts.length,
     );
   }
 
-  _openDetailView(PostModel post, PostBloc postBloc, BuildContext context) {
-    postBloc.add(PostSetTitleAndIdEvent(post.id!, post.title!));
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return MyHome(label: post.title!, body: const PostDetailView());
-      },
-    ));
-  }
+  // _openDetailView(PostModel post, PostBloc postBloc, BuildContext context) {
+  //   postBloc.add(PostSetTitleAndIdEvent(post.id!, post.title!));
+  //   Navigator.push(context, MaterialPageRoute(
+  //     builder: (context) {
+  //       return MyHome(label: post.title!, body: const PostDetailView());
+  //     },
+  //   ));
+  // }
 
   Widget _buildListTileFromPost(
     PostModel post, {
@@ -71,9 +89,8 @@ class ListViewWithBlocBuilderSample extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.all(16),
       selected: isSelected,
-      onTap: () => isSelected
-          ? postBloc.add(PostSetEvent(0))
-          : _openDetailView(post, postBloc, context),
+      onTap: () =>
+          postBloc.add(PostSelectEvent(selected: isSelected ? null : post)),
       tileColor: post.id! % 2 == 0 ? Colors.teal.shade700 : Colors.teal,
       selectedTileColor: Colors.tealAccent,
       subtitle: Text(

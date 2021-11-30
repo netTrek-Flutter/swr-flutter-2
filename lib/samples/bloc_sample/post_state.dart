@@ -1,4 +1,5 @@
 part of 'post_bloc.dart';
+/*
 
 @immutable
 abstract class PostState {
@@ -17,3 +18,4 @@ class PostSetSelected extends PostState {
     return 'PostSetSelected{selected: $selected, selectedTitle: $selectedTitle}';
   }
 }
+*/

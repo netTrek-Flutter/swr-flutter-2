@@ -55,16 +55,17 @@ class PostModel {
 
   @override
   String toString() {
-    return jsonEncode(toJson()
-      // ..remove('body')
-      ..updateAll((String key, dynamic value) {
-        if (value is String) {
-          int max = 12;
-          max = min(
-              max, value.length); // if string.length < max use string.length
-          return '${value.substring(0, max)}...';
-        }
-        return value;
-      }));
+    return '$id - $userId';
+    // return jsonEncode(toJson()
+    //   // ..remove('body')
+    //   ..updateAll((String key, dynamic value) {
+    //     if (value is String) {
+    //       int max = 12;
+    //       max = min(
+    //           max, value.length); // if string.length < max use string.length
+    //       return '${value.substring(0, max)}...';
+    //     }
+    //     return value;
+    //   }));
   }
 }

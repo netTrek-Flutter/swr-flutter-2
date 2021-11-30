@@ -1,21 +1,23 @@
 part of 'post_bloc.dart';
+/*
 
 @immutable
-abstract class PostEvent {}
+abstract class _PostEvent {}
 
-class PostNextEvent extends PostEvent {}
+class _PostNextEvent extends _PostEvent {}
 
-class PostPrevEvent extends PostEvent {}
+class _PostPrevEvent extends _PostEvent {}
 
-class PostSetEvent extends PostEvent {
+class _PostSetEvent extends _PostEvent {
   final int selected;
 
-  PostSetEvent(this.selected);
+  _PostSetEvent(this.selected);
 }
 
-class PostSetTitleAndIdEvent extends PostEvent {
+class _PostSetTitleAndIdEvent extends _PostEvent {
   final int selected;
   final String title;
 
-  PostSetTitleAndIdEvent(this.selected, this.title);
+  _PostSetTitleAndIdEvent(this.selected, this.title);
 }
+*/

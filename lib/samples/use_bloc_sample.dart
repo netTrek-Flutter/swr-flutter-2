@@ -7,6 +7,8 @@ class UseBlocSample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container();
+    /*
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) => Column(
@@ -35,5 +37,6 @@ class UseBlocSample extends StatelessWidget {
         ],
       ),
     );
+    */
   }
 }

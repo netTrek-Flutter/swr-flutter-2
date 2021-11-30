@@ -6,9 +6,10 @@ import 'package:meta/meta.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';
+/*
 
-class PostBloc extends Bloc<PostEvent, PostState> {
-  PostBloc() : super(PostSetSelected(selected: 0)) {
+class _PostBloc extends Bloc<PostEvent, PostState> {
+  _PostBloc() : super(PostSetSelected(selected: 0)) {
     on<PostNextEvent>((event, emit) {
       emit(PostSetSelected(
           selected: min(state.selected + 1,
@@ -29,3 +30,5 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
   }
 }
+
+*/

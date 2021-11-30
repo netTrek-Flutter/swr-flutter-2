@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/common/common_bottom_nav_bar.dart';
 import 'package:training/common/factories.dart';
 import 'package:training/main/my_app.dart';
+import 'package:training/samples/bloc_advanced_sample/post_bloc.dart';
 import 'package:training/samples/bloc_sample/post_bloc.dart';
 // import 'package:training/samples/cubit_sample/post_cubit.dart';
 
@@ -23,18 +25,17 @@ class MyHome extends StatelessWidget {
   Widget build(BuildContext context) {
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
-      buildWhen: (prev, next) {
-        print('2-prev ${prev}');
-        print('2-next ${next}');
-        return prev.selected != next.selected;
-      },
+      // buildWhen: (prev, next) {
+      //   log('prev ${prev}');
+      //   log('next ${next}');
+      //   log((prev != next).toString());
+      //   return prev != next;
+      // },
       builder: (context, state) {
-        print('2 - rebuild');
+        log('** $state');
         return Scaffold(
           appBar: AppBar(
-            title: label == page_list
-                ? buildText('$label - ${state.selected}')
-                : buildText(label),
+            title: buildText(label),
           ),
           body: body,
           floatingActionButton: Row(
@@ -42,7 +43,7 @@ class MyHome extends StatelessWidget {
             children: [
               FloatingActionButton(
                 heroTag: 'fBTNdownward',
-                onPressed: () => bloc.add(PostNextEvent()),
+                onPressed: null, //() => bloc.add(PostNextEvent()),
                 child: const Icon(Icons.arrow_downward),
               ),
               const SizedBox(
@@ -50,7 +51,7 @@ class MyHome extends StatelessWidget {
               ),
               FloatingActionButton(
                 heroTag: 'fBTNupward',
-                onPressed: () => bloc.add(PostPrevEvent()),
+                onPressed: () => null, //bloc.add(PostPrevEvent()),
                 child: const Icon(Icons.arrow_upward),
               ),
             ],
