@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class AnimationCtrlSample extends StatefulWidget {
@@ -26,6 +28,7 @@ class _AnimatedWithControllerState extends State<AnimationCtrlSample>
 
   @override
   void dispose() {
+    log('dispose tp stop ctrl');
     _controller.dispose();
     super.dispose();
   }

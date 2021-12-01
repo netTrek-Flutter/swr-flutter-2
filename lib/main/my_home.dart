@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,8 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  bool once = false;
+
   StreamSubscription<PostState>? subscription;
 
   PostModel? selected;
@@ -42,20 +45,18 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
+    // print(bloc.state); // wenn es 2x läuft liegt es an IDE/SDK Kombi
+    // flutter run im Terminal und es läuft wie erwartete
     if (widget.body is ListViewWithBlocBuilderSample) {
       _observeState2OpenDetails(bloc, context);
     }
     // Navigator.of(context).
-    return BlocBuilder<PostBloc, PostState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: buildAppBar(state, widget, context),
-          body: widget.body,
-          floatingActionButton: buildFloatingActionButton(bloc, widget),
-          bottomNavigationBar: buildCommonBottomNavBar(widget.body),
-          endDrawer: buildDrawer(context, widget.body),
-        );
-      },
+    return Scaffold(
+      appBar: buildAppBar(bloc.state, widget, context),
+      body: widget.body,
+      floatingActionButton: buildFloatingActionButton(bloc, widget),
+      bottomNavigationBar: buildCommonBottomNavBar(widget.body),
+      endDrawer: buildDrawer(context, widget.body),
     );
   }
 

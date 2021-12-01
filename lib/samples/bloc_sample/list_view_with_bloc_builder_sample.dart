@@ -17,7 +17,10 @@ class ListViewWithBlocBuilderSample extends StatelessWidget {
     PostBloc bloc = BlocProvider.of<PostBloc>(context);
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
-        // log('${çstate}');
+        // print('${state}'); - doppelter Lauf entsteht wegen IDE/SDK "BUG"
+        // flutter run - startet das ganze wirklich einmal
+        // das Flutter Team sieht das nicht als kritisch, weil rerendering
+        // Konstate werde eh verwirft und im Release Build sowas nicht passiert
         if (state is PostInitial && state.posts == null) {
           // log('trigger load ${state.hashCode}');
           bloc.add(PostLoadEvent());

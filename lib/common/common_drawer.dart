@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:training/main/my_home.dart';
 import 'package:training/samples/animation_ctrl_sample.dart';
@@ -55,6 +57,10 @@ Drawer buildDrawer(BuildContext context, Widget widget) {
         _buildListTile(
             widget, context, widget is ImageSample, const ImageSample()),
         _buildListTile(widget, context, widget is SvgSample, const SvgSample()),
+        _buildListTile(widget, context, widget is AnimationCtrlSample,
+            const AnimationCtrlSample()),
+        _buildListTile(widget, context, widget is AnimiereContainer,
+            const AnimiereContainer(defaultSize: 15)),
         _buildListTile(
             widget, context, widget is DrawSample, const DrawSample()),
         _buildListTile(widget, context, widget is CustomPainterSample,
@@ -73,15 +79,6 @@ Drawer buildDrawer(BuildContext context, Widget widget) {
             const FutureBuilderSample()),
         _buildListTile(
             widget, context, widget is GestureSample, const GestureSample()),
-        _buildListTile(widget, context, widget is AnimationCtrlSample,
-            const AnimationCtrlSample()),
-        _buildListTile(
-            widget,
-            context,
-            widget is AnimiereContainer,
-            const AnimiereContainer(
-              defaultSize: 15,
-            )),
       ],
     ),
   );
@@ -93,9 +90,9 @@ ListTile _buildListTile(
     title: Text(body.runtimeType.toString()),
     selected: isSelected,
     onTap: isSelected == false
-        ? () {
+        ? () async {
             Navigator.pop(context);
-            Navigator.push(
+            final response = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => MyHome(

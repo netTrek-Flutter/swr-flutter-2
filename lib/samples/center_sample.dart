@@ -11,7 +11,7 @@ class CenterSample extends StatelessWidget {
     // print(themeData.textTheme.bodyText2);
     return Center(
       child: Text(
-        'hello world 2',
+        'hello cedric',
         style: themeData.textTheme.bodyText1,
       ),
       // child: Builder(
